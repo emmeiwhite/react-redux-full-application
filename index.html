@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
     <script
       crossorigin
       src="https://unpkg.com/react@16/umd/react.development.js"
@@ -15,6 +16,21 @@
     <title>A NEW START</title>
   </head>
   <body>
-    <div><h1>THE FOUNDATION</h1></div>
+    <div id="app"></div>
+
+    <script type="text/babel">
+      class App extends React.Component {
+        render() {
+          return (
+            <div className="App">
+              <h1>THE APP COMPONENT</h1>
+            </div>
+          );
+        }
+      }
+
+      // The IDEA OF REACT IS WE CAN ACTUALLY OUTPUT DYNAMIC CONTENT
+      ReactDOM.render(<App />, document.getElementById("app"));
+    </script>
   </body>
 </html>
