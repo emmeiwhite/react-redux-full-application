@@ -47,19 +47,21 @@
 
         clickHandlerToCheckScope(e) {
           console.log("scope of this");
-          // Here we are unable to access the state but with render() method we were able to access the same
-          console.log(this.state.name);
+          // Here we are unable to access the state but within JSX and within render() method we were able to access the same
+          console.log(this.state.items[1].name); // Here we get our error
         }
 
         render() {
           // As we see, the scope of 'this' within render method
           // is pointing to the state but within every other method
-          // of our component, this scope is topc of discussion
+          // of our component, this scope is lost
+          console.log(`Within render method ${this.state.items[0].name}`); // State of component Accessible here
           return (
             <div className="App">
               <h1>THE APP COMPONENT</h1>
               <p>State (data) handled by the Component is :</p>
 
+              {/* WITHIN JSX state is accessible*/}
               <ul>
                 {this.state.items.map(function(item, index) {
                   return <li key={index}>{item.name}</li>;
