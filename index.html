@@ -27,8 +27,20 @@
           ]
         };
 
+        // onClick
         handleClick(e) {
-          console.dir("Click event in action" + e.target);
+          console.log(e.target);
+        }
+
+        // onMouseOver
+        handleMouseOver(e) {
+          console.log("X-Co-Ordinate" + e.pageX);
+          console.log("Y-Co-ordinate" + e.pageY);
+        }
+
+        // onCopy
+        handleCopy(e) {
+          console.log("Try being original for once !!!");
         }
 
         render() {
@@ -48,8 +60,9 @@
 
               {/* LET'S   look at some events*/}
 
-              <button onClick={this.handleClick}>CLICK ME</button>
-              <button onClick={this.handleMouseOver}>MouseOverOnTo</button>
+              <p onClick={this.handleClick}>CLICK ME</p>
+              <button onMouseOver={this.handleMouseOver}>HOVER ME</button>
+              <p onCopy={this.handleCopy}>WHAT WE THINK, WE BECOME</p>
             </div>
           );
         }
