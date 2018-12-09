@@ -51,6 +51,32 @@
           console.log(this.state.items[1].name); // Here we get our error
         }
 
+        // Arrow function resolves the this context issue, makes the 'this' keyword point to the instance of the Component, We may also bind the scope of this within the constructor. This way we can access our state
+
+        clickThisHandler = e => {
+          // console.log(this.state); // Now 'this' is pointing to the Component Instance
+          // // Copy the items first for immutability:
+          // const copiedItems = [...this.state.items];
+          // console.log(copiedItems);
+          const copiedState = { ...this.state };
+          console.log(copiedState);
+
+          // Changing data to JSON format :
+          const JSON_FORMAT = JSON.stringify(this.state);
+          console.log(JSON_FORMAT);
+
+          // DEEP COPYING:
+          const deep_Scan_Copy = JSON.parse(JSON.stringify(this.state));
+          console.log(deep_Scan_Copy);
+
+          // Let's update the state Immutably
+
+          copiedState.items[0].name = "Ranger Cycle";
+
+          this.setState({
+            copiedState
+          });
+        };
         render() {
           // As we see, the scope of 'this' within render method
           // is pointing to the state but within every other method
@@ -75,6 +101,11 @@
               <p onCopy={this.handleCopy}>WHAT WE THINK, WE BECOME</p>
               <button onClick={this.clickHandlerToCheckScope}>
                 scope of this with eventHandlers
+              </button>
+
+              {/* this context handler , and changing the state immutably*/}
+              <button onClick={this.clickThisHandler}>
+                Click To Check 'this' context {this.state.items[0].name}
               </button>
             </div>
           );
