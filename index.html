@@ -20,17 +20,65 @@
 
     <script type="text/babel">
       class App extends React.Component {
+        state = {
+          items: [
+            { name: "laptop", price: 65000 },
+            { name: "Smart Phone", price: 34000 }
+          ]
+        };
+
+        handleClick(e) {
+          console.dir("Click event in action" + e.target);
+        }
+
         render() {
+          // As we see, the scope of 'this' within render method
+          // is pointing to the state but within every other method
+          // of our component, this scope is topc of discussion
           return (
             <div className="App">
               <h1>THE APP COMPONENT</h1>
+              <p>State (data) handled by the Component is :</p>
+
+              <ul>
+                {this.state.items.map(function(item, index) {
+                  return <li key={index}>{item.name}</li>;
+                })}
+              </ul>
+
+              {/* LET'S   look at some events*/}
+
+              <button onClick={this.handleClick}>CLICK ME</button>
+              <button onClick={this.handleMouseOver}>MouseOverOnTo</button>
             </div>
           );
         }
       }
 
       // The IDEA OF REACT IS WE CAN ACTUALLY OUTPUT DYNAMIC CONTENT
+      // We use {} within JSX to do so
       ReactDOM.render(<App />, document.getElementById("app"));
     </script>
   </body>
 </html>
+
+<!--
+  Kidney Stone Treatment: ACCORDING TO HOMOPATHY
+    1. Take Excess Water
+    2. Vegetables:
+      - Peas (Matar)
+      - Kakdi
+      - Cocumber
+      - Cabbage
+      - Carrot
+      - Radish
+      - Karela
+      - Kaddu
+      - Potato
+      - Onion
+    3. Fruits
+      - WaterMelon
+      - Melon
+      - Banana
+      -
+-->
