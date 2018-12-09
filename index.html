@@ -43,6 +43,14 @@
           console.log("Try being original for once !!!");
         }
 
+        // Last thing we are trying is to access our state into one of our event Handlers,
+
+        clickHandlerToCheckScope(e) {
+          console.log("scope of this");
+          // Here we are unable to access the state but with render() method we were able to access the same
+          console.log(this.state.name);
+        }
+
         render() {
           // As we see, the scope of 'this' within render method
           // is pointing to the state but within every other method
@@ -60,9 +68,12 @@
 
               {/* LET'S   look at some events*/}
 
-              <p onClick={this.handleClick}>CLICK ME</p>
+              <button onClick={this.handleClick}>CLICK ME</button>
               <button onMouseOver={this.handleMouseOver}>HOVER ME</button>
               <p onCopy={this.handleCopy}>WHAT WE THINK, WE BECOME</p>
+              <button onClick={this.clickHandlerToCheckScope}>
+                scope of this with eventHandlers
+              </button>
             </div>
           );
         }
