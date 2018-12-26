@@ -24,11 +24,36 @@
     <script type="text/babel">
       // Creating Components with the help of React library
       class App extends React.Component {
+        // Let's define our state : which simply is data|UI state
+        // Main Workflow:
+        // On some event, state is updates, which reRenders UI. So we are keeping data and UI in sync with each other
+
+        state = {
+          items: [
+            { name: "Vegetable Pack", price: 389 },
+            { name: "Fruit Bowl", price: 30 },
+            { name: "Shorma", price: 150 }
+          ]
+        };
         render() {
           return (
             <div className="App">
               <h1>Hello Guys</h1>
               <p>I am Imran, and I am back</p>
+
+              {/* Dynamic Data*/}
+              <h2>Today's Shopping</h2>
+              <ul>
+                {this.state.items.map((item, index) => {
+                  return (
+                    <li key={index}>
+                      <strong>Name: </strong>
+                      {item.name}, <strong>Price: </strong>
+                      {item.price}
+                    </li>
+                  );
+                })}
+              </ul>
             </div>
           );
         }
