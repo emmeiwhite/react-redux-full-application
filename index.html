@@ -3,8 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+
+    <!-- Loading babel for Tranpilation from ES6 to ES5 -->
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <!-- React and ReactDOM from CDN -->
     <script
       crossorigin
       src="https://unpkg.com/react@16/umd/react.development.js"
@@ -13,129 +15,28 @@
       crossorigin
       src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"
     ></script>
-    <title>A NEW START</title>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>React | View Library</title>
   </head>
   <body>
-    <div id="app"></div>
+    <div class="container"></div>
 
     <script type="text/babel">
+      // Creating Components with the help of React library
       class App extends React.Component {
-        state = {
-          items: [
-            { name: "laptop", price: 65000 },
-            { name: "Smart Phone", price: 34000 }
-          ]
-        };
-
-        // onClick
-        handleClick(e) {
-          console.log(e.target);
-        }
-
-        // onMouseOver
-        handleMouseOver(e) {
-          console.log("X-Co-Ordinate" + e.pageX);
-          console.log("Y-Co-ordinate" + e.pageY);
-        }
-
-        // onCopy
-        handleCopy(e) {
-          console.log("Try being original for once !!!");
-        }
-
-        // Last thing we are trying is to access our state into one of our event Handlers,
-
-        clickHandlerToCheckScope(e) {
-          console.log("scope of this");
-          // Here we are unable to access the state but within JSX and within render() method we were able to access the same
-          console.log(this.state.items[1].name); // Here we get our error
-        }
-
-        // Arrow function resolves the this context issue, makes the 'this' keyword point to the instance of the Component, We may also bind the scope of this within the constructor. This way we can access our state
-
-        clickThisHandler = e => {
-          // console.log(this.state); // Now 'this' is pointing to the Component Instance
-          // // Copy the items first for immutability:
-          // const copiedItems = [...this.state.items];
-          // console.log(copiedItems);
-          const copiedState = { ...this.state };
-          console.log(copiedState);
-
-          // Changing data to JSON format :
-          const JSON_FORMAT = JSON.stringify(this.state);
-          console.log(JSON_FORMAT);
-
-          // DEEP COPYING:
-          const deep_Scan_Copy = JSON.parse(JSON.stringify(this.state));
-          console.log(deep_Scan_Copy);
-
-          // Let's update the state Immutably
-
-          copiedState.items[0].name = "Ranger Cycle";
-
-          this.setState({
-            copiedState
-          });
-        };
         render() {
-          // As we see, the scope of 'this' within render method
-          // is pointing to the state but within every other method
-          // of our component, this scope is lost
-          console.log(`Within render method ${this.state.items[0].name}`); // State of component Accessible here
           return (
             <div className="App">
-              <h1>THE APP COMPONENT</h1>
-              <p>State (data) handled by the Component is :</p>
-
-              {/* WITHIN JSX state is accessible*/}
-              <ul>
-                {this.state.items.map(function(item, index) {
-                  return <li key={index}>{item.name}</li>;
-                })}
-              </ul>
-
-              {/* LET'S   look at some events*/}
-
-              <button onClick={this.handleClick}>CLICK ME</button>
-              <button onMouseOver={this.handleMouseOver}>HOVER ME</button>
-              <p onCopy={this.handleCopy}>WHAT WE THINK, WE BECOME</p>
-              <button onClick={this.clickHandlerToCheckScope}>
-                scope of this with eventHandlers
-              </button>
-
-              {/* this context handler , and changing the state immutably*/}
-              <button onClick={this.clickThisHandler}>
-                Click To Check 'this' context {this.state.items[0].name}
-              </button>
+              <h1>Hello Guys</h1>
+              <p>I am Imran, and I am back</p>
             </div>
           );
         }
       }
 
-      // The IDEA OF REACT IS WE CAN ACTUALLY OUTPUT DYNAMIC CONTENT
-      // We use {} within JSX to do so
-      ReactDOM.render(<App />, document.getElementById("app"));
+      // Rendering on DOM using ReactDOM library
+
+      ReactDOM.render(<App />, document.querySelector(".container"));
     </script>
   </body>
 </html>
-
-<!--
-  Kidney Stone Treatment: ACCORDING TO HOMOPATHY
-    1. Take Excess Water
-    2. Vegetables:
-      - Peas (Matar)
-      - Kakdi
-      - Cocumber
-      - Cabbage
-      - Carrot
-      - Radish
-      - Karela
-      - Kaddu
-      - Potato
-      - Onion
-    3. Fruits
-      - WaterMelon
-      - Melon
-      - Banana
-      -
--->
