@@ -35,6 +35,20 @@
             { name: "Shorma", price: 150 }
           ]
         };
+
+        // HANDLING EVENTS : This becomes our functionality
+
+        handleClick(e) {
+          console.dir(e);
+        }
+
+        handleHover(e) {
+          console.log(e.target, e.pageX);
+        }
+
+        handleCopy(e) {
+          console.log("Don't try to copy the stuff. We have a copyright");
+        }
         render() {
           return (
             <div className="App">
@@ -54,6 +68,14 @@
                   );
                 })}
               </ul>
+
+              {/* EVENTS ... User Actions */}
+
+              <button onClick={this.handleClick}>Click Me</button>
+              <button onMouseOver={this.handleHover}>HoverOver</button>
+              <p onCopy={this.handleCopy}>
+                select and copy me to check copy event
+              </p>
             </div>
           );
         }
