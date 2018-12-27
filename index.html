@@ -27,20 +27,26 @@
         // Let's define our state : which simply is data|UI state
         // Main Workflow:
         // On some event, state is updates, which reRenders UI. So we are keeping data and UI in sync with each other
+        constructor(props) {
+          super(props);
+          this.state = {
+            items: [
+              { name: "Vegetable Pack", price: 389 },
+              { name: "Fruit Bowl", price: 30 },
+              { name: "Shorma", price: 150 }
+            ]
+          };
 
-        state = {
-          items: [
-            { name: "Vegetable Pack", price: 389 },
-            { name: "Fruit Bowl", price: 30 },
-            { name: "Shorma", price: 150 }
-          ]
-        };
+          this.handleCopy = this.handleCopy.bind(this);
+        }
 
         // HANDLING EVENTS : This becomes our functionality
 
-        handleClick(e) {
+        handleClick = e => {
           console.dir(e);
-        }
+          // context of this. Here we have used arrow function to bind the context of this keyword to point to the "this" value same as it is outside (i-e component's this)
+          console.log(this.state.items);
+        };
 
         handleHover(e) {
           console.log(e.target, e.pageX);
@@ -48,7 +54,12 @@
 
         handleCopy(e) {
           console.log("Don't try to copy the stuff. We have a copyright");
+
+          // We have binded "this" context in the constructor in this function
+
+          console.log(this.state.items[0].name);
         }
+
         render() {
           return (
             <div className="App">
